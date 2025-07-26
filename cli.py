@@ -2,12 +2,12 @@ import sys
 from genai_client import generate_iac
 
 def main():
-    print("🌩️ Welcome to CloudGen AI CLI\n")
+    print(" Welcome to CloudGen AI CLI\n")
 
     # Step-by-step inputs
     cloud = input("Which cloud provider? (aws / azure / gcp / oracle): ").strip().lower()
     while cloud not in ["aws", "azure", "gcp", "oracle"]:
-        cloud = input("❌ Invalid. Please enter: aws / azure / gcp / oracle: ").strip().lower()
+        cloud = input(" Invalid. Please enter: aws / azure / gcp / oracle: ").strip().lower()
 
     # Supported IaC tools per cloud
     supported_iac = {
@@ -48,7 +48,7 @@ def main():
         else:
             iac = input(f"Which IaC tool do you prefer? ({' / '.join(iac_options)}): ").strip().lower()
             while iac not in iac_options:
-                iac = input(f"❌ Invalid. Please enter one of: ({' / '.join(iac_options)}): ").strip().lower()
+                iac = input(f" Invalid. Please enter one of: ({' / '.join(iac_options)}): ").strip().lower()
 
     service = input("What service to deploy? (e.g., ec2, s3, lambda, vm): ").strip().lower()
     access = input("Does it need access to other services? (yes / no): ").strip().lower()
@@ -82,7 +82,7 @@ def main():
         "Respond with only the code in plain text without any markdown or explanation."
     )
 
-    print("\n🧠 Generating infrastructure as code with GenAI...\n")
+    print("\n Generating infrastructure as code with GenAI...\n")
     output = generate_iac(prompt)
 
     # Use cloud-aware file extension
@@ -97,7 +97,7 @@ def main():
     with open(filename, "w") as f:
         f.write(output)
 
-    print(f"\n✅ IaC written to: {filename}")
+    print(f"\n IaC written to: {filename}")
 
 if __name__ == "__main__":
     main()
