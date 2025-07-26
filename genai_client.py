@@ -1,6 +1,5 @@
 from groq import Groq
 
-client = Groq(api_key="xxx")
 
 def generate_iac(prompt):
     completion = client.chat.completions.create(
