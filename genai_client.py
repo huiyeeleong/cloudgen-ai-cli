@@ -1,7 +1,7 @@
 from groq import Groq
 
 # ⚠️ Hardcoded API key for private/internal use only
-client = Groq(api_key="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")
+client = Groq(api_key="xxx")
 
 def generate_iac(prompt):
     completion = client.chat.completions.create(
