@@ -1,6 +1,5 @@
 from groq import Groq
 
-# ⚠️ Hardcoded API key for private/internal use only
 client = Groq(api_key="xxx")
 
 def generate_iac(prompt):
