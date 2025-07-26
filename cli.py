@@ -1,4 +1,4 @@
-import sys
+import os
 from genai_client import generate_iac
 
 def main():
@@ -85,7 +85,7 @@ def main():
     print("\n Generating infrastructure as code with GenAI...\n")
     output = generate_iac(prompt)
 
-    # Use cloud-aware file extension
+    # Write to mounted output directory
     extension_map = {
         "cloudformation": "yaml",
         "terraform": "tf",
@@ -93,11 +93,14 @@ def main():
     }
     extension = extension_map.get(iac, "txt")
     filename = f"{cloud}-{service}.{extension}"
+    output_dir = "/home/cliuser/output"
+    os.makedirs(output_dir, exist_ok=True)
+    full_path = os.path.join(output_dir, filename)
 
-    with open(filename, "w") as f:
+    with open(full_path, "w") as f:
         f.write(output)
 
-    print(f"\n IaC written to: {filename}")
+    print(f"\n✅ IaC written to: {full_path}")
 
 if __name__ == "__main__":
     main()

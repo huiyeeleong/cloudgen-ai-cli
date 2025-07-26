@@ -1,16 +1,16 @@
 FROM python:3.11-slim
 
 # Set non-root user
-RUN useradd -m cliuser
+RUN useradd -ms /bin/bash cliuser
 USER cliuser
 
+# Set workdir
 WORKDIR /home/cliuser/app
 
-# Copy files
-COPY --chown=cliuser . .
+# Copy source code
+COPY . .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# No bash or shell needed; no exec-in
-ENTRYPOINT ["python3", "cli.py"]
+CMD ["python3", "cli.py"]
